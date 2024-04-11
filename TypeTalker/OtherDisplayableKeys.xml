@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Keys>
+	<Key code="34">
+		<SayWhat>Quote</SayWhat>
+		<DisplayText>"</DisplayText>
+	</Key>
+	<Key code="39">
+		<SayWhat>Apostrophe</SayWhat>
+		<DisplayText>'</DisplayText>
+	</Key>
+	<Key code="44">
+		<SayWhat>Comma</SayWhat>
+		<DisplayText>,</DisplayText>
+	</Key>
+	<Key code="46">
+		<SayWhat>Period</SayWhat>
+		<DisplayText>.</DisplayText>
+	</Key>
+	<Key code="47">
+		<SayWhat>Backslash</SayWhat>
+		<DisplayText>/</DisplayText>
+	</Key>
+	<Key code="58">
+		<SayWhat>Colon</SayWhat>
+		<DisplayText>:</DisplayText>
+	</Key>
+	<Key code="59">
+		<SayWhat>Semicolon</SayWhat>
+		<DisplayText>;</DisplayText>
+	</Key>
+	<Key code="63">
+		<SayWhat>Question Mark</SayWhat>
+		<DisplayText>?</DisplayText>
+	</Key>
+
+</Keys> 

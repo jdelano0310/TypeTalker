@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Speech.Synthesis;
 using System.Windows.Forms;
 
@@ -15,9 +11,11 @@ namespace TypeTalker
         private String SayWhat;
         private Random rnd;
         private int JustSounds = 0; // don't hold more than 4 sounds in clue
+        
         private string[] numberWord = new string[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
         private string lastFourNumbers;
 
+        // this allows keyboard control
         private Utilities.globalKeyboardHook gkh = new Utilities.globalKeyboardHook();
 
         // GbelowC = 196, A = 220, Asharp = 233, B = 247, C = 262, Csharp = 277, D = 294, Dsharp = 311, E = 330, F = 349, Fsharp = 370,
@@ -45,7 +43,6 @@ namespace TypeTalker
 
             }
         }
-
 
         private void DisplayRandomColor()
         {

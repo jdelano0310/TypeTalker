@@ -76,8 +76,8 @@ namespace TypeTalker
             gkh.HookedKeys.Add(Keys.LMenu); // alt key
             gkh.HookedKeys.Add(Keys.RMenu);
 
-            gkh.HookedKeys.Add(Keys.LShiftKey); // shift key
-            gkh.HookedKeys.Add(Keys.RShiftKey);
+            //gkh.HookedKeys.Add(Keys.LShiftKey); // shift key
+            //gkh.HookedKeys.Add(Keys.RShiftKey);
 
             gkh.HookedKeys.Add(Keys.LWin);  // windows key
             gkh.HookedKeys.Add(Keys.RWin);  
@@ -138,7 +138,7 @@ namespace TypeTalker
             Int32 keyCode = Convert.ToInt32(e.KeyChar);
             //                        a number key                    capital letter                    lowercase letters                
             bool keyIsDisplayable = (keyCode > 47 && keyCode < 58) | (keyCode > 64 && keyCode < 91) | (keyCode > 96 && keyCode < 123);
-            
+
             lblDisplayPressedKey.Text = "";
             
             DisplayRandomColor();
@@ -243,6 +243,11 @@ namespace TypeTalker
                 case 63:
                     SayWhat = "Question Mark";
                     lblDisplayPressedKey.Text = "?";
+                    break;
+
+                case 92:
+                    SayWhat = "Forwardslash";
+                    lblDisplayPressedKey.Text = "\\";
                     break;
 
             }

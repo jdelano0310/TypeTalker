@@ -25,6 +25,8 @@ namespace TypeTalker
         // WHOLE = 1600, HALF = WHOLE/2, QUARTER = HALF/2, EIGHTH = QUARTER/2, SIXTEENTH = EIGHTH/2
         private Int16[] duration = new short[] { 1600, 800, 400, 200, 100 };
 
+        private string exitPin = "7391";
+
         private void Speak()
         {
             try
@@ -148,7 +150,7 @@ namespace TypeTalker
                 if (keyCode > 47 && keyCode < 58)
                 {
                     // added a pin to assist in closing the program
-                    lastFourNumbers += SayWhat;
+                    if (exitPin.Contains(SayWhat)) { lastFourNumbers += SayWhat; } else { lastFourNumbers = ""; }
 
                     // if a number is pressed, also spell the word out on screen
                     lblDisplayPressedKey.Text = SayWhat + "\n" + numberWord[int.Parse(SayWhat)];
@@ -161,7 +163,7 @@ namespace TypeTalker
                     lblDisplayPressedKey.Text = SayWhat;
                 }
 
-                if (lastFourNumbers == "7391")
+                if (lastFourNumbers == exitPin)
                 {
 
                     this.Close();  // force the window to close

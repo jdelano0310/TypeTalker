@@ -7,7 +7,7 @@ using System.Text;
 using System.Speech.Synthesis;
 using System.Windows.Forms;
 
-namespace CaiusTyper
+namespace TypeTalker
 {
     public partial class Form1 : Form
     {
@@ -29,12 +29,21 @@ namespace CaiusTyper
 
         private void Speak()
         {
-            Application.DoEvents();
-            TextToSpeech.SpeakAsyncCancelAll();
-            Application.DoEvents();
-            TextToSpeech.SpeakAsync(SayWhat);
-            Application.DoEvents();
-            JustSounds -= 1;
+            try
+            {
+                Application.DoEvents();
+                TextToSpeech.SpeakAsyncCancelAll();
+
+                Application.DoEvents();
+                TextToSpeech.SpeakAsync(SayWhat);
+
+                Application.DoEvents();
+                JustSounds -= 1;
+
+            } catch
+            {
+
+            }
         }
 
 
@@ -80,13 +89,27 @@ namespace CaiusTyper
 
         }
         
-        public Form1()
+        public Form1(string cmdArg)
         {
+            if(cmdArg != null)
+            {
+                // in development keep the form small
+                if(cmdArg=="DEBUG")
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
+                else
+                {
+                    this.WindowState = FormWindowState.Maximized;
+                }
+            }
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
             TextToSpeech = new SpeechSynthesizer
             {
                 Rate = -2
@@ -113,10 +136,12 @@ namespace CaiusTyper
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
             Int32 keyCode = Convert.ToInt32(e.KeyChar);
+            //                        a number key                    capital letter                    lowercase letters                
             bool keyIsDisplayable = (keyCode > 47 && keyCode < 58) | (keyCode > 64 && keyCode < 91) | (keyCode > 96 && keyCode < 123);
-
+            
+            lblDisplayPressedKey.Text = "";
+            
             DisplayRandomColor();
 
             if (keyIsDisplayable)
@@ -125,39 +150,105 @@ namespace CaiusTyper
 
                 if (keyCode > 47 && keyCode < 58)
                 {
-                    // added a pin to force close the program
+                    // added a pin to assist in closing the program
                     lastFourNumbers += SayWhat;
 
                     // if a number is pressed, also spell the word out on screen
-                    lblDisplayPressedKey.Text = SayWhat + "\n(" + numberWord[int.Parse(SayWhat)] + ")";
+                    lblDisplayPressedKey.Text = SayWhat + "\n" + numberWord[int.Parse(SayWhat)];
                 }
                 else
                 {
-                    lastFourNumbers = "";
+                    lastFourNumbers = ""; // reset this when a number isn't selected
 
-                    // speak what was typed
+                    // display what was typed
                     lblDisplayPressedKey.Text = SayWhat;
                 }
-                Speak();
 
                 if (lastFourNumbers == "7391")
                 {
+
                     this.Close();  // force the window to close
                 }
                 else
                 {
-                    if (lastFourNumbers.Length == 4) { lastFourNumbers = ""; }
+                    // if the numbers reach a length of 4 and it isn't the 
+                    // code to close, then clear it
+                    if (lastFourNumbers.Length >= 4) { lastFourNumbers = ""; }
                 }
             }
             else
             {
-                if (JustSounds < 3)
+                // check for non-letter and number characters to display
+                keyIsDisplayable = OtherDisplayableKeys(keyCode);
+
+                // if the character still can't be spoken and there
+                // aren't 3 sounds waiting to be played, play a sound
+                // for the non displayable keystroke
+                if (JustSounds < 3 && !keyIsDisplayable)
                 {
                     JustSounds += 1;
-                    lblDisplayPressedKey.Text = "";
                     PlayRandomSound();
                 }
             }
+
+            // say way is in the SayWhat varaible
+            if (keyIsDisplayable) {
+                Speak(); 
+            }
+        }
+
+        private bool OtherDisplayableKeys(int keyCode)
+        {
+            // other keyboard keys that are display and speakable that aren't
+            // numbers or letters
+
+            SayWhat = "";
+
+            switch (keyCode)
+            {
+                case 34:
+                    SayWhat = "Quote";
+                    lblDisplayPressedKey.Text = "\"";
+                    break;
+
+                case 39:
+                    SayWhat = "Apostrophe";
+                    lblDisplayPressedKey.Text = "'";
+                    break;
+
+                case 44:
+                    SayWhat = "Comma";
+                    lblDisplayPressedKey.Text = ",";
+                    break;
+
+                case 46:
+                    SayWhat = "Period";
+                    lblDisplayPressedKey.Text = ".";
+                    break;
+
+                case 47:
+                    SayWhat = "Backslash";
+                    lblDisplayPressedKey.Text = "/";
+                    break;
+
+                case 58:
+                    SayWhat = "Colon";
+                    lblDisplayPressedKey.Text = ":";
+                    break;
+
+                case 59:
+                    SayWhat = "Semicolon";
+                    lblDisplayPressedKey.Text = ";";
+                    break;
+
+                case 63:
+                    SayWhat = "Question Mark";
+                    lblDisplayPressedKey.Text = "?";
+                    break;
+
+            }
+
+            return SayWhat.Length > 0;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

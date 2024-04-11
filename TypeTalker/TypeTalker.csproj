@@ -8,8 +8,8 @@
     <ProjectGuid>{4B2B7AF8-559A-4EC4-81ED-25C5CFF62361}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CaiusTyper</RootNamespace>
-    <AssemblyName>CaiusTyper</AssemblyName>
+    <RootNamespace>TypeTalker</RootNamespace>
+    <AssemblyName>TypeTalker</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

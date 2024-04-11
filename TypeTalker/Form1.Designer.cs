@@ -1,4 +1,4 @@
-﻿namespace CaiusTyper
+﻿namespace TypeTalker
 {
     partial class Form1
     {

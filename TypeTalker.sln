@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeTalker", "CaiusTyper\TypeTalker.csproj", "{4B2B7AF8-559A-4EC4-81ED-25C5CFF62361}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeTalker", "TypeTalker\TypeTalker.csproj", "{4B2B7AF8-559A-4EC4-81ED-25C5CFF62361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

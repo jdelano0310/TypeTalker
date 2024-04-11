@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CaiusTyper.Properties
+namespace TypeTalker.Properties
 {
 
 
